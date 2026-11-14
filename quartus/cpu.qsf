@@ -17,6 +17,7 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulati
 
 # Arquivos, na ordem de compilação (o pacote primeiro, o topo por último)
 set_global_assignment -name VHDL_FILE ../rtl/cpu_pkg.vhd
+set_global_assignment -name VHDL_FILE ../rtl/somadorCompleto.vhd
 set_global_assignment -name VHDL_FILE ../rtl/ula.vhd
 set_global_assignment -name VHDL_FILE ../rtl/reg16.vhd
 set_global_assignment -name VHDL_FILE ../rtl/ext_sinal.vhd

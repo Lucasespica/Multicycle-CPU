@@ -10,7 +10,7 @@ if {[file exists work]} { vdel -lib work -all }
 vlib work
 vmap work work
 
-set rtl {cpu_pkg ula reg16 ext_sinal banco_regs memoria unidade_controle cpu debouncer hex7seg top_de2}
+set rtl {cpu_pkg somadorCompleto ula reg16 ext_sinal banco_regs memoria unidade_controle cpu debouncer hex7seg top_de2}
 foreach f $rtl {
     vcom -2008 -quiet rtl/$f.vhd
 }
