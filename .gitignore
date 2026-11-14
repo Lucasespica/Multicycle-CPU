@@ -17,6 +17,7 @@ qdb/
 *.done
 *.jdi
 *.sld
+*.qdf
 
 # ---- ModelSim / Questa ----
 work/

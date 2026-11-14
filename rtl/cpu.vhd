@@ -1,3 +1,12 @@
+-- =====================================================================
+-- CPU multiciclo de 16 bits - Arquitetura de Sistemas Computacionais
+-- PUC-Campinas, 2026
+--   Antonio Magalhaes Roquete Macedo   RA 24013443
+--   Guilherme Eid Godoy                RA 24002322
+--   Lucas Espica Rezende               RA 24006575
+--   Lucas Kitsuta Sabino               RA 24001484
+--   Rafael Martiniano Nogueira Filho   RA 24008538
+-- =====================================================================
 -- Caminho de dados da CPU multiciclo: liga controle, banco, ULA, memória
 -- e os registradores PC, RI, RDM, A, B e SaídaULA.
 -- Tudo roda em clk (CLOCK_50); registradores só mudam quando en = '1'.
