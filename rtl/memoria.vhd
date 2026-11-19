@@ -8,10 +8,16 @@
 --   Rafael Martiniano Nogueira Filho
 -- =====================================================================
 -- Memória única de 4096 x 16 (programa e dados), inicializada por ARQ_MIF.
--- Endereço registrado na borda de clock; saída q não registrada; grava se wren = '1'.
--- ESQUELETO: implementar com altsyncram ou o IP "RAM: 1-PORT" (P4).
+-- altsyncram de uma porta: endereço, dado e wren registrados na borda de
+-- clock; saída q não registrada (o dado sai um ciclo depois do endereço).
+-- Grava data em address na borda em que wren = '1' (D7: sem passar pelo en).
+-- O caminho de ARQ_MIF é relativo à pasta de onde se compila ou simula:
+-- "../mif/x.mif" no Quartus (pasta quartus/) e "mif/x.mif" no ModelSim (raiz).
 library ieee;
 use ieee.std_logic_1164.all;
+
+library altera_mf;
+use altera_mf.altera_mf_components.all;
 
 entity memoria is
   generic (
@@ -26,7 +32,33 @@ entity memoria is
   );
 end entity memoria;
 
-architecture esqueleto of memoria is
+architecture ram of memoria is
 begin
-  q <= (others => '0');
-end architecture esqueleto;
+
+  u_ram : altsyncram
+    generic map (
+      operation_mode                => "SINGLE_PORT",
+      intended_device_family        => "Cyclone IV E",
+      lpm_type                      => "altsyncram",
+      lpm_hint                      => "ENABLE_RUNTIME_MOD=NO",
+      width_a                       => 16,
+      widthad_a                     => 12,
+      numwords_a                    => 4096,
+      width_byteena_a               => 1,
+      outdata_reg_a                 => "UNREGISTERED",
+      outdata_aclr_a                => "NONE",
+      clock_enable_input_a          => "BYPASS",
+      clock_enable_output_a         => "BYPASS",
+      power_up_uninitialized        => "FALSE",
+      read_during_write_mode_port_a => "NEW_DATA_NO_NBE_READ",
+      init_file                     => ARQ_MIF
+    )
+    port map (
+      clock0    => clock,
+      wren_a    => wren,
+      address_a => address,
+      data_a    => data,
+      q_a       => q
+    );
+
+end architecture ram;

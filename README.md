@@ -85,6 +85,7 @@ Multicycle-CPU/
     ├── topologia.md            descrição textual e topologia da CPU (seção do relatório)
     ├── estados.drawio
     ├── unidade_controle.md     unidade de controle: estados e sinais (seção do relatório)
+    ├── testes.md               programas de teste, valores esperados e resultados da simulação
     └── uso_de_ia.md            o que foi feito com IA e por quê (seção do relatório)
 ```
 

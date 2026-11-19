@@ -1,0 +1,33 @@
+-- =====================================================================
+-- CPU multiciclo de 16 bits - Arquitetura de Sistemas Computacionais
+-- PUC-Campinas, 2026
+--   Antonio Magalhaes Roquete Macedo   RA 24013443
+--   Guilherme Eid Godoy                RA 24002322
+--   Lucas Espica Rezende               RA 24006575
+--   Lucas Kitsuta Sabino               RA 24001484
+--   Rafael Martiniano Nogueira Filho   RA 24008538
+-- =====================================================================
+-- final: soma de 1 a N (N = 5) com laco, ST do resultado, LD e SLT de verificacao.
+-- Esperado: R2 = R4 = 0x000F, R5 = 0x0001, Mem[0x1F] = 0x000F.
+
+WIDTH = 16;
+DEPTH = 4096;
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT BEGIN
+    000 : 5205;   --       ADDI R1, R0, 5     N = 5
+    001 : 5400;   --       ADDI R2, R0, 0     soma = 0
+    002 : 5601;   --       ADDI R3, R0, 1     i = 1
+    003 : 0498;   -- laco: ADD  R2, R2, R3    soma += i
+    004 : 8642;   --       BEQ  R3, R1, fim   se i == N, sai
+    005 : 56C1;   --       ADDI R3, R3, 1     i += 1
+    006 : A003;   --       JMP  laco          volta
+    007 : 741F;   -- fim:  ST   R2, R0, 31    Mem[0x1F] = soma
+    008 : 681F;   --       LD   R4, R0, 31    R4 = Mem[0x1F]
+    009 : 4A20;   --       SLT  R5, R0, R4    R5 = (0 < soma) = 1
+    00A : F000;   --       HALT               fim
+    [00B..01E] : F000;   -- HALT
+    01F : 0000;   --       dado
+    [020..FFF] : F000;   -- HALT (o resto da memoria)
+END;
