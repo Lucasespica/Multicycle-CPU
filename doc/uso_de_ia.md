@@ -2,6 +2,15 @@
 
 Cada integrante anota o que fez com IA e por quê. P5 consolida esta seção no PDF.
 
+## P1 – Arquitetura e integração
+
+- **Ferramenta:** Claude (Claude Code).
+- **O que foi feito com IA:** a organização do plano do P1 (`plano_p1.md`) e do contrato de interfaces, com as portas de cada entidade e o `rtl/cpu_pkg.vhd` (opcodes, estados e códigos da ULA); os esqueletos das entidades; o projeto do Quartus (`quartus/cpu.qpf` e `cpu.qsf`, com a pinagem da DE2-115) e o `tb/rodar.do`; o README e o `.gitignore`; e os rascunhos de `doc/caminho_de_dados.drawio` e `doc/topologia.md`. A IA partiu do `doc/divisao_cpu.md` e das decisões D1 a D8, e não propôs um desenho próprio.
+- **`rtl/cpu.vhd`:** escrito à mão pelo P1. A IA foi usada como apoio de estudo: para entender a sintaxe e os padrões de VHDL necessários (instanciação de componentes, `with … select` para os muxes, sinais internos e a lógica de carga do PC) e para orientar a ordem de montagem do caminho de dados. O código em si não foi gerado pela IA.
+- **Por quê:** o caminho de dados já estava definido no plano do grupo. Escrever o `cpu.vhd` à mão foi uma forma de entender como cada registrador e cada mux se ligam, e a IA serviu para tirar dúvidas de VHDL no caminho. No restante, a IA foi usada para montar logo no início a estrutura do repositório e do projeto do Quartus, para que os outros integrantes tivessem as portas congeladas desde o kickoff.
+- **Decisões do P1:** D2 (a condição do desvio fica no `cpu.vhd`: `pc_load = PCWrite or (PCWriteCond and cond)`), D4 (A, B e SaídaULA carregam a cada `en`), D7 (`wren = MemWrite`, sem passar pelo `en`) e D8 (os muxes ficam dentro do `cpu.vhd`).
+- **Revisão:** conferir cada instrução pela tabela de sinais por estado (seção 6 do `plano_p1.md`), fazer a revisão cruzada com o P2 (controle × caminho de dados) e rodar `do tb/rodar.do cpu_tb` com os 4 programas na integração.
+
 ## P2 – Unidade de controle
 
 - **Ferramenta:** Claude (Claude Code).
