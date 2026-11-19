@@ -404,13 +404,14 @@ Hoje é sexta, 13/11. O feriado de 20/11 é dia de trabalho, para quem estiver a
 ### Boas práticas
 
 - **Nomes:** os sinais têm o mesmo nome no VHDL, no diagrama de caminho de dados e na tabela de sinais. Isso poupa horas na hora de escrever o documento.
-- **Comentários:** só o mínimo para dizer o que o arquivo ou o bloco faz. Não há cabeçalho com nomes: os integrantes ficam no README, sem RA.
+- **Cabeçalho:** todo `.vhd` começa com o nome dos 5 integrantes, sem RA.
+- **Comentários:** só o mínimo para dizer o que o arquivo ou o bloco faz.
 - **Repositório:** `Multicycle-CPU`, com a estrutura descrita no README.
   - `rtl/`: os .vhd
   - `tb/`: os testbenches e o `rodar.do`
   - `mif/`: os programas
   - `quartus/`
   - `doc/`: este plano, diagramas, imagens e `uso_de_ia.md`
-- **Git:** um branch por papel (`p1-integracao`, `p2-controle`, `p3-componentes`, `p4-memoria-testes`, `p5-placa`). O merge na `main` é feito pelo P1, depois que o testbench do módulo passa.
+- **Git:** um branch por parte, no formato `ParteN/Nome` (por exemplo `Parte1/Sabino`). Cada parte entra na `main` por pull request, depois que o testbench do módulo passa.
 - **Revisão cruzada:** P1 ↔ P2 (controle × caminho de dados), P3 → P4 (valores esperados) e P4 → P5 (resultados na placa).
 - **Uso de IA:** cada pessoa anota, enquanto trabalha, o que fez com IA e por quê. A organização deste plano e a proposta inicial de arquitetura foram feitas com IA (Claude), e o grupo revisou e validou as decisões.
