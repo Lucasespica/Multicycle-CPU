@@ -1,11 +1,11 @@
 -- =====================================================================
 -- CPU multiciclo de 16 bits - Arquitetura de Sistemas Computacionais
 -- PUC-Campinas, 2026
---   Antonio Magalhaes Roquete Macedo   RA 24013443
---   Guilherme Eid Godoy                RA 24002322
---   Lucas Espica Rezende               RA 24006575
---   Lucas Kitsuta Sabino               RA 24001484
---   Rafael Martiniano Nogueira Filho   RA 24008538
+--   Antonio Magalhaes Roquete Macedo
+--   Guilherme Eid Godoy
+--   Lucas Espica Rezende
+--   Lucas Kitsuta Sabino
+--   Rafael Martiniano Nogueira Filho
 -- =====================================================================
 -- ULA de 16 bits (deu pra usar o Lab04, sem mudanças na lógica).
 -- ULACtl: 000 AND, 001 OR, 010 soma, 100 sub, 110 SLT (com sinal), 111 NOR.
