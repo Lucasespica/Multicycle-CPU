@@ -1,0 +1,41 @@
+-- =====================================================================
+-- CPU multiciclo de 16 bits - Arquitetura de Sistemas Computacionais
+-- PUC-Campinas, 2026
+--   Antonio Magalhaes Roquete Macedo   RA 24013443
+--   Guilherme Eid Godoy                RA 24002322
+--   Lucas Espica Rezende               RA 24006575
+--   Lucas Kitsuta Sabino               RA 24001484
+--   Rafael Martiniano Nogueira Filho   RA 24008538
+-- =====================================================================
+-- t2_mem: LD e ST.
+-- Casos: LD de dados vindos do .mif, ST seguido de LD no mesmo endereco,
+-- deslocamento negativo (base em registrador) e base R0 com imediato positivo.
+-- Dados em 0x10 a 0x1F.
+
+WIDTH = 16;
+DEPTH = 4096;
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT BEGIN
+    000 : 5210;   --       ADDI R1, R0, 16    R1 = 0x10, base da area de dados
+    001 : 6440;   --       LD   R2, R1, 0     R2 = Mem[0x10] = 0x1234 (do .mif)
+    002 : 6641;   --       LD   R3, R1, 1     R3 = Mem[0x11] = 0xABCD (do .mif)
+    003 : 0898;   --       ADD  R4, R2, R3    R4 = 0x1234 + 0xABCD = 0xBE01
+    004 : 7842;   --       ST   R4, R1, 2     Mem[0x12] = 0xBE01
+    005 : 6A42;   --       LD   R5, R1, 2     R5 = Mem[0x12] = 0xBE01 (ST seguido de LD)
+    006 : 5C1F;   --       ADDI R6, R0, 31    R6 = 0x1F
+    007 : 77BF;   --       ST   R3, R6, -1    Mem[0x1E] = 0xABCD (deslocamento negativo)
+    008 : 6FBF;   --       LD   R7, R6, -1    R7 = Mem[0x1E] = 0xABCD
+    009 : 741F;   --       ST   R2, R0, 31    Mem[0x1F] = 0x1234 (base R0)
+    00A : 621F;   --       LD   R1, R0, 31    R1 = Mem[0x1F] = 0x1234
+    00B : F000;   --       HALT               fim
+    [00C..00F] : F000;   -- HALT
+    010 : 1234;   --       dado
+    011 : ABCD;   --       dado
+    012 : 0000;   --       dado
+    [013..01D] : F000;   -- HALT
+    01E : 0000;   --       dado
+    01F : 0000;   --       dado
+    [020..FFF] : F000;   -- HALT (o resto da memoria)
+END;

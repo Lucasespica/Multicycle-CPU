@@ -83,6 +83,7 @@ Multicycle-CPU/
     ├── img/                    diagramas, prints das formas de onda e fotos da placa
     ├── caminho_de_dados.drawio
     ├── estados.drawio
+    ├── testes.md               programas de teste, valores esperados e resultados da simulação
     └── uso_de_ia.md            o que foi feito com IA e por quê (seção do relatório)
 ```
 

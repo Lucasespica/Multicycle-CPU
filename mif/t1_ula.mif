@@ -1,0 +1,35 @@
+-- =====================================================================
+-- CPU multiciclo de 16 bits - Arquitetura de Sistemas Computacionais
+-- PUC-Campinas, 2026
+--   Antonio Magalhaes Roquete Macedo   RA 24013443
+--   Guilherme Eid Godoy                RA 24002322
+--   Lucas Espica Rezende               RA 24006575
+--   Lucas Kitsuta Sabino               RA 24001484
+--   Rafael Martiniano Nogueira Filho   RA 24008538
+-- =====================================================================
+-- t1_ula: ADD, SUB, AND, OR, SLT e ADDI.
+-- Casos: imediatos +31 e -32, escrita em R0 ignorada, resultados negativos,
+-- SLT com sinal (-1 < 1 da 1; 1 < -1 da 0) e resultado zero.
+
+WIDTH = 16;
+DEPTH = 4096;
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT BEGIN
+    000 : 521F;   --       ADDI R1, R0, 31    R1 = +31 (maior imediato)
+    001 : 5420;   --       ADDI R2, R0, -32   R2 = -32 (menor imediato)
+    002 : 5005;   --       ADDI R0, R0, 5     escrita em R0: R0 continua 0
+    003 : 0650;   --       ADD  R3, R1, R2    R3 = 31 + (-32) = -1
+    004 : 1888;   --       SUB  R4, R2, R1    R4 = -32 - 31 = -63
+    005 : 5A01;   --       ADDI R5, R0, 1     R5 = 1
+    006 : 4CE8;   --       SLT  R6, R3, R5    R6 = (-1 < 1) = 1 (com sinal)
+    007 : 5E07;   --       ADDI R7, R0, 7     R7 = 7, para o SLT seguinte sobrescrever
+    008 : 4F58;   --       SLT  R7, R5, R3    R7 = (1 < -1) = 0 (sem sinal daria 1)
+    009 : 2AA0;   --       AND  R5, R2, R4    R5 = FFE0 and FFC1 = FFC0
+    00A : 3260;   --       OR   R1, R1, R4    R1 = 001F or FFC1 = FFDF
+    00B : 1490;   --       SUB  R2, R2, R2    R2 = -32 - (-32) = 0 (resultado zero)
+    00C : 0048;   --       ADD  R0, R1, R1    escrita em R0 por tipo R: R0 continua 0
+    00D : F000;   --       HALT               fim
+    [00E..FFF] : F000;   -- HALT (o resto da memoria)
+END;
