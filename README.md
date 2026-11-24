@@ -81,8 +81,11 @@ Multicycle-CPU/
 └── doc/
     ├── divisao_cpu.md          plano de ação: decisões, divisão do trabalho, cronograma e interfaces
     ├── img/                    diagramas, prints das formas de onda e fotos da placa
-    ├── caminho_de_dados.drawio
+    ├── caminho_de_dados.drawio diagrama do caminho de dados (seção do relatório)
+    ├── topologia.md            descrição textual e topologia da CPU (seção do relatório)
     ├── estados.drawio
+    ├── unidade_controle.md     unidade de controle: estados e sinais (seção do relatório)
+    ├── testes.md               programas de teste, valores esperados e resultados da simulação
     └── uso_de_ia.md            o que foi feito com IA e por quê (seção do relatório)
 ```
 
@@ -119,8 +122,9 @@ Clone o repositório num caminho **sem acentos nem espaços**. O Quartus e o Mod
 
 ## Regras do grupo
 
-- **Branches:** um por papel, `p1-integracao`, `p2-controle`, `p3-componentes`, `p4-memoria-testes` e `p5-placa`. O merge na `main` é feito pelo P1, depois que o testbench do módulo passa.
-- **Comentários:** só o mínimo para dizer o que o arquivo ou o bloco faz. Os nomes dos integrantes ficam só neste README.
+- **Branches:** um por parte, no formato `ParteN/Nome` (por exemplo `Parte1/Sabino`). Cada parte entra na `main` por pull request, depois que o testbench do módulo passa.
+- **Cabeçalho:** todo `.vhd` começa com o nome dos 5 integrantes, sem RA.
+- **Comentários:** só o mínimo para dizer o que o arquivo ou o bloco faz.
 - **Nomes:** os sinais têm o mesmo nome no VHDL, no diagrama de caminho de dados e na tabela de sinais.
 - **Arquivos gerados:** os do Quartus e do ModelSim não entram no git. O `.gitignore` já cuida disso.
 - **Uso de IA:** registre em `doc/uso_de_ia.md` o que foi feito com IA e por quê.

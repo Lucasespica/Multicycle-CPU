@@ -1,14 +1,14 @@
 -- =====================================================================
 -- CPU multiciclo de 16 bits - Arquitetura de Sistemas Computacionais
 -- PUC-Campinas, 2026
---   Antonio Magalhaes Roquete Macedo   RA 24013443
---   Guilherme Eid Godoy                RA 24002322
---   Lucas Espica Rezende               RA 24006575
---   Lucas Kitsuta Sabino               RA 24001484
---   Rafael Martiniano Nogueira Filho   RA 24008538
+--   Antonio Magalhaes Roquete Macedo
+--   Guilherme Eid Godoy
+--   Lucas Espica Rezende
+--   Lucas Kitsuta Sabino
+--   Rafael Martiniano Nogueira Filho
 -- =====================================================================
 -- Dígito hexadecimal para 7 segmentos, ativo em nível baixo (seg(6..0) = g..a).
--- ESQUELETO: implementar a partir da função seg7 do Lab05 (P5).
+-- Segmento aceso = '0'. Mesma ordem dos pinos HEXn[0..6] da DE2-115.
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -19,7 +19,24 @@ entity hex7seg is
   );
 end entity hex7seg;
 
-architecture esqueleto of hex7seg is
+architecture tabela of hex7seg is
 begin
-  seg <= (others => '1');   -- apagado
-end architecture esqueleto;
+  with valor select
+    seg <= "1000000" when "0000",   -- 0
+           "1111001" when "0001",   -- 1
+           "0100100" when "0010",   -- 2
+           "0110000" when "0011",   -- 3
+           "0011001" when "0100",   -- 4
+           "0010010" when "0101",   -- 5
+           "0000010" when "0110",   -- 6
+           "1111000" when "0111",   -- 7
+           "0000000" when "1000",   -- 8
+           "0010000" when "1001",   -- 9
+           "0001000" when "1010",   -- A
+           "0000011" when "1011",   -- b
+           "1000110" when "1100",   -- C
+           "0100001" when "1101",   -- d
+           "0000110" when "1110",   -- E
+           "0001110" when "1111",   -- F
+           "1111111" when others;   -- apagado
+end architecture tabela;
